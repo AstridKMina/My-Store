@@ -1,0 +1,95 @@
+import React, { useEffect, useState } from 'react';
+import productsSlice, {
+    filterCategoryThunk,
+    filterHeadlineThunk,
+    getProductsThunk
+} from "../store/slices/products.slice";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import {
+    Row,
+    Card,
+    Col,
+    InputGroup,
+    Form,
+    Button,
+    ListGroup
+} from "react-bootstrap";
+// import {productsSlice} from '../store/slices/products.slice';
+
+const Home = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [searchProduct, setSearchProduct] = useState("");
+    const [categories, setCategories] = useState([]);
+
+
+    const products = useSelector((state) => state.products);
+
+    useEffect(() => {
+        dispatch(getProductsThunk());
+        axios
+            .get("https://ecommerce-api-react.herokuapp.com/api/v1/products/categories/")
+            .then((res) => setCategories(res.data.data.categories));
+
+    }, []);
+
+
+    console.log(products);
+
+    const submit = (e) => {
+        e.preventDefault();
+    }
+
+    return (
+
+        <div className='products'>
+            <div className='categories'>
+
+                <Row>
+                    <Col lg={16}>
+                        <h5>Categories</h5>
+                        <ListGroup>
+                            {categories.map((category) => (
+                                <ListGroup.Item
+                                    key={category?.id}
+                                    onClick={() => dispatch(filterCategoryThunk(category.id))}
+                                >
+                                    {category?.name}
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                    </Col>
+                </Row>
+            </div>
+            <div>
+                <div className='firstForm'>
+                    <form  onSubmit={submit}>
+                        <input className='firstInput'
+                            type="text"
+                            value={searchProduct} placeholder="What are you looking for?"
+                            onChange={(e) => setSearchProduct(e.target.value)}
+
+                        />
+                        <button className='myBtn' onClick={() => dispatch(filterHeadlineThunk(searchProduct))} > Search</button>
+                    </form>
+                </div>
+                <div className='cardList'>
+                    {products.map((product) => (
+                        <li className='card' onClick={() => navigate(`/shop/${product.id}`)} key={product.id}>
+                            <img src={product.productImgs} />
+                            <h5>{product.title}</h5>
+                            <h5>Price: ${product.price}</h5>
+                            {/* <button><i className="fa-solid fa-cart-shopping"></i></button> */}
+                        </li>
+                    ))}
+
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Home;
