@@ -3,7 +3,6 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addCartThunk, buyCart } from "../store/slices/cart.slice";
-// import { addFavoriteThunk } from "../store/slices/favorites.slice";
 import { getProductsThunk } from "../store/slices/products.slice";
 
 const ProductsDetails = () => {
@@ -33,7 +32,7 @@ const ProductsDetails = () => {
     }, [allProducts, id]);
 
     const addProduct = () => {
-        alert("Añadido a carrito");
+        alert("Added to cart");
         const cartProduct = {
             id: productsDetail.id,
             quantity
@@ -50,20 +49,22 @@ const ProductsDetails = () => {
 
     const restProduct = () => {
         if (quantity < 1) {
-            SetQuantity(1)
+            setQuantity(1)
         }
         setQuantity(quantity - 1)
-         
-        
+
+
     }
-    // console.log(productsDetail)
+   
     return (
         <div>
             <h1 className="detailsTitle">{productsDetail?.title}</h1>
 
             <div className="productDetail">
                 <div className="productImg">
-                    <img src={productsDetail?.productImgs} alt="" />
+                    <div className="myImg">
+                        <img src={productsDetail?.productImgs} alt="" />
+                    </div>
                 </div>
                 <div className="productDescription">
                     {productsDetail?.description}
@@ -80,7 +81,7 @@ const ProductsDetails = () => {
                         variant="outline-secondary"
                         id="button-addon2"
                     >
-                       <i className="fa-solid fa-cart-shopping"></i> Add to Cart
+                        <i className="fa-solid fa-cart-shopping"></i> Add to Cart
                     </Button>
                 </div>
 
@@ -90,18 +91,17 @@ const ProductsDetails = () => {
                 <div className="suggested-title">
                     <h4>Discover similar products</h4>
                 </div>
-                <div className="otherItems"></div>
-                <ul>
-                    {suggestedProducts.map((products) => (
-                        <li key={products.id} onClick={() => navigate(`/shop/${products.id}`)}>
-                            <img src={products?.productImgs} alt="" />
-                            {products?.title}
-                            <h6>Price: ${products?.price}</h6>
-                        </li>
-
-                    ))}
-                </ul>
-
+                <div className="otherItems">
+                    <ul>
+                        {suggestedProducts.map((products) => (
+                            <li key={products.id} onClick={() => navigate(`/shop/${products.id}`)}>
+                                <img src={products?.productImgs} alt="cellphone"  className="product-img"/>
+                                {products?.title}
+                                <h6>Price: ${products?.price}</h6>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );

@@ -17,6 +17,7 @@ import {
     ListGroup
 } from "react-bootstrap";
 // import {productsSlice} from '../store/slices/products.slice';
+import promo from "../Assets/Promo_Mobile.webp"
 
 const Home = () => {
 
@@ -44,48 +45,52 @@ const Home = () => {
     }
 
     return (
-
-        <div className='products'>
-            <div className='categories'>
-
-                <Row>
-                    <Col lg={16}>
-                        <h5>Categories</h5>
-                        <ListGroup>
-                            {categories.map((category) => (
-                                <ListGroup.Item
-                                    key={category?.id}
-                                    onClick={() => dispatch(filterCategoryThunk(category.id))}
-                                >
-                                    {category?.name}
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </Col>
-                </Row>
+        <div>
+            <div className='promo'>
+                <img src={promo} alt="promo-image" className='promo-img'/>
             </div>
-            <div>
-                <div className='firstForm'>
-                    <form  onSubmit={submit}>
-                        <input className='firstInput'
-                            type="text"
-                            value={searchProduct} placeholder="What are you looking for?"
-                            onChange={(e) => setSearchProduct(e.target.value)}
+            <div className='products'>
+                <div className='categories'>
 
-                        />
-                        <button className='myBtn' onClick={() => dispatch(filterHeadlineThunk(searchProduct))} > Search</button>
-                    </form>
+                    <Row className='theCategories'>
+                        <Col lg={16}>
+                            <h5>Categories</h5>
+                            <ListGroup >
+                                {categories.map((category) => (
+                                    <ListGroup.Item
+                                        key={category?.id}
+                                        onClick={() => dispatch(filterCategoryThunk(category.id))}
+                                    >
+                                        {category?.name}
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        </Col>
+                    </Row>
                 </div>
-                <div className='cardList'>
-                    {products.map((product) => (
-                        <li className='card' onClick={() => navigate(`/shop/${product.id}`)} key={product.id}>
-                            <img src={product.productImgs} />
-                            <h5>{product.title}</h5>
-                            <h5>Price: ${product.price}</h5>
-                            {/* <button><i className="fa-solid fa-cart-shopping"></i></button> */}
-                        </li>
-                    ))}
+                <div className='itemList'>
+                    <div className='firstForm'>
+                        <form onSubmit={submit}>
+                            <input className='firstInput'
+                                type="text"
+                                value={searchProduct} placeholder="What are you looking for?"
+                                onChange={(e) => setSearchProduct(e.target.value)}
 
+                            />
+                            <button className='myBtn' onClick={() => dispatch(filterHeadlineThunk(searchProduct))} > Search</button>
+                        </form>
+                    </div>
+                    <div className='cardList'>
+                        {products.map((product) => (
+                            <li className='card' onClick={() => navigate(`/shop/${product.id}`)} key={product.id}>
+                                <img src={product.productImgs} />
+                                <h5>{product.title}</h5>
+                                <h5>Price: ${product.price}</h5>
+                                {/* <button><i className="fa-solid fa-cart-shopping"></i></button> */}
+                            </li>
+                        ))}
+
+                    </div>
                 </div>
             </div>
         </div>

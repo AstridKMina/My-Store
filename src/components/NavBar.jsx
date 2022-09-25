@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Container, Nav, Button, Offcanvas } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CartSidebar from "./CartSidebar";
+import myLogo from "/src/Assets/store1.gif"
 
 const NavBar = () => {
 
@@ -24,7 +25,7 @@ const NavBar = () => {
         <div>
             <Navbar bg="light" expand="lg" className="navbar">
                 <Container>
-                    <Navbar.Brand href="/#/"><img className='navBarImg' src="https://e7.pngegg.com/pngimages/265/778/png-clipart-online-store-the-internet-shopping.png" alt="" /></Navbar.Brand>
+                    <Navbar.Brand href="/#/"><img className='navBarImg' src={myLogo} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

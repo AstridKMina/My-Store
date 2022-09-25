@@ -18,7 +18,7 @@ const Login = () => {
       })
       .catch((error) => {
         if (error.response.status === 404) {
-          alert("Credenciales inválidas");
+          alert("Invalid credentials");
         }
         // console.log(error.response);
       });
@@ -29,10 +29,14 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="myLogin">
       <h1>Login</h1>
-      <Form onSubmit={handleSubmit(submit)}>
+      <Form onSubmit={handleSubmit(submit)} className="loginForm">
         <Form.Group className="mb-3" controlId="formBasicEmail">
+          <div className=" credentials">
+            <h6><span>Email:</span>alex@gmail.com</h6><br />
+            <h6><span>Password:</span>password </h6><br />
+          </div>
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
