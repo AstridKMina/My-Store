@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addCartThunk, buyCart } from "../store/slices/cart.slice";
+import { addCartThunk} from "../store/slices/cart.slice";
 import { getProductsThunk } from "../store/slices/products.slice";
 
 const ProductsDetails = () => {

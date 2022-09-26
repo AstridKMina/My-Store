@@ -20,7 +20,7 @@ const Login = () => {
         if (error.response.status === 404) {
           alert("Invalid credentials");
         }
-        // console.log(error.response);
+        
       });
     reset({
       email: "",

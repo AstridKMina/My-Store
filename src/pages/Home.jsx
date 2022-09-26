@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import productsSlice, {
+import {
     filterCategoryThunk,
     filterHeadlineThunk,
     getProductsThunk
@@ -9,14 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import {
     Row,
-    Card,
     Col,
-    InputGroup,
-    Form,
-    Button,
     ListGroup
 } from "react-bootstrap";
-// import {productsSlice} from '../store/slices/products.slice';
 import promo from "../Assets/Promo_Mobile.webp"
 
 const Home = () => {
@@ -86,7 +81,6 @@ const Home = () => {
                                 <img src={product.productImgs} />
                                 <h5>{product.title}</h5>
                                 <h5>Price: ${product.price}</h5>
-                                {/* <button><i className="fa-solid fa-cart-shopping"></i></button> */}
                             </li>
                         ))}
 

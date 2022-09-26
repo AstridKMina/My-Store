@@ -21,10 +21,6 @@ const Purchases = () => {
                     <li key={myPurchases.id} >
                         {myPurchases.cart.products.map((purchases) => (
                             <>
-                                {/* <div className='purchasesId'>
-                                    <h6>{purchases.productsInCart?.cartId}</h6>
-
-                                </div> */}
                                 <div key={purchases.id} className='purchasesItems'>
                                     <div className='purchasesTitle'>
                                         <h6>{purchases.title}</h6>
@@ -41,7 +37,6 @@ const Purchases = () => {
                                 </div>
                             </>
                         ))}
-
                     </li>
                 ))}
             </ul>
